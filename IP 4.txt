@@ -1,0 +1,47 @@
+#prac 4
+
+
+import cv2 
+import numpy as np 
+import matplotlib.pyplot as plt 
+# ========================= 
+# STEP 1: READ IMAGE 
+# ========================= 
+img = cv2.imread('C:/Users/Downloads/image.png', 0) 
+if img is None: 
+    print("Error: Image not found. Check filename.") 
+    exit() 
+plt.figure() 
+plt.imshow(img, cmap='gray') 
+plt.title("Original Image") 
+plt.axis('off') 
+plt.show() 
+# ========================= 
+# STEP 2: CONTRAST STRETCHING 
+# ========================= 
+rmin = np.min(img) 
+rmax = np.max(img) 
+# Avoid division by zero 
+if rmax == rmin: 
+    contrast_stretched = img.copy() 
+else: 
+    contrast_stretched = ((img - rmin) * 255) / (rmax - rmin) 
+    contrast_stretched = contrast_stretched.astype(np.uint8) 
+plt.figure() 
+plt.imshow(contrast_stretched, cmap='gray') 
+plt.title("Contrast Stretched Image") 
+plt.axis('off') 
+plt.show() 
+# ========================= 
+# STEP 3: INTENSITY LEVEL SLICING 
+# ========================= 
+low = 100 
+high = 180 
+# Vectorized (FAST & CORRECT METHOD) 
+sliced_img = np.where((img >= low) & (img <= high), 255, 
+0).astype(np.uint8) 
+plt.figure() 
+plt.imshow(sliced_img, cmap='gray') 
+plt.title("Intensity Level Slicing") 
+plt.axis('off') 
+plt.show()
