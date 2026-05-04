@@ -1,0 +1,108 @@
+#bi 5
+
+# Load built-in dataset
+data(iris)
+
+# Remove Species column (for unsupervised learning)
+newiris <- iris
+newiris$Species <- NULL
+
+# Apply K-means clustering (3 clusters)
+kc <- kmeans(newiris, 3)
+
+# Print clustering result
+print(kc)
+
+# Compare actual vs predicted clusters
+print(table(iris$Species, kc$cluster))
+
+# Plot clusters
+plot(newiris$Sepal.Length, newiris$Sepal.Width,
+     col = kc$cluster,
+     main = "K-Means Clustering on Iris Dataset",
+     xlab = "Sepal Length",
+     ylab = "Sepal Width")
+
+# Plot cluster centers
+points(kc$centers[, c("Sepal.Length", "Sepal.Width")],
+       col = 1:3,
+       pch = 8,
+       cex = 2)
+
+
+
+[
+MUST INSTALL (in this order)
+🔹 Step 1: Install R (very important)
+
+👉 Download R language from:
+
+https://cran.r-project.org/
+
+✔️ Without this, nothing will run
+✔️ This is the actual engine
+
+🔹 Step 2: Install VS Code extensions
+
+Open VS Code → go to Extensions (left sidebar) → install:
+
+✅ R (by Yuki Ueda)
+
+👉 Search: R
+👉 Install extension named:
+
+R (by Yuki Ueda)
+🔹 Step 3: Install R Extension Pack (optional but helpful)
+
+👉 Search:
+
+R Extension Pack
+
+This gives:
+
+R support
+Syntax highlighting
+Debugging support
+✅ 2. ALSO INSTALL THIS INSIDE R (IMPORTANT)
+
+Open R (or RStudio) once and run:
+
+install.packages("languageserver")
+
+👉 This is required for VS Code to understand R properly
+
+✅ 3. How to run your .R file in VS Code
+Method 1 (Best):
+Open your .R file
+Press:
+👉 Ctrl + Enter
+Method 2:
+Open terminal in VS Code
+Type:
+R
+Then run code line by line
+❌ Common mistakes (you probably did this)
+Installed extension but not R itself
+Using Visual Studio instead of VS Code
+Didn’t install languageserver
+✅ 4. EASIEST OPTION (for exam)
+
+Honestly:
+
+👉 Use RStudio instead of VS Code
+
+Because:
+
+One click run
+No setup issues
+More stable for viva/practical
+🔥 What you should do RIGHT NOW
+
+If exam is tomorrow:
+
+👉 Don’t risk VS Code setup
+👉 Install:
+
+R
+RStudio
+]
